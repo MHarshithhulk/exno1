@@ -32,125 +32,108 @@ print(df)
 
 ![image](https://github.com/user-attachments/assets/ed136448-80c3-43b6-a19e-12ba2d8e7a02)
 
+df.head()
+<img width="1474" height="315" alt="Screenshot 2025-08-30 112251" src="https://github.com/user-attachments/assets/e04d1ead-83d8-4d60-b2af-f743df78568c" />
+
+df.tail()
+
+<img width="1439" height="318" alt="Screenshot 2025-08-30 183015" src="https://github.com/user-attachments/assets/27cc3cc1-42b5-4deb-8ce6-bc201de50e31" />
+
+
+df.isnull()
+
+<img width="872" height="887" alt="image" src="https://github.com/user-attachments/assets/1a58cb96-e6b9-4c4b-a743-ab2d0dbc751c" />
+
 df.isnull().sum()
 
-![image](https://github.com/user-attachments/assets/3be521c4-3d3d-4ab0-8827-454050c2d7da)
+<img width="343" height="637" alt="image" src="https://github.com/user-attachments/assets/852eda82-9d39-4693-b6e9-756bd7b621c1" />
+
 
 df.isnull().any()
 
-![image](https://github.com/user-attachments/assets/75105c83-dd70-434b-bf01-9163f5b9f9a4)
+<img width="391" height="622" alt="image" src="https://github.com/user-attachments/assets/b42c8fd9-63d1-4bda-880a-ef39e0f3d1e4" />
 
-df.dropna()
 
-![image](https://github.com/user-attachments/assets/a37bf9ef-6d18-4e26-8cf4-c6a3d9e85c20)
+df.dropna(axis=0)
 
-df.fillna(0)
+<img width="1175" height="628" alt="image" src="https://github.com/user-attachments/assets/530a6698-2e84-4069-900d-8577a38cfaa9" />
 
-![image](https://github.com/user-attachments/assets/20038ff3-8965-4877-815d-fcbe7ea22c4a)
 
-df.fillna(method = 'ffill')
+df.dropna(axis=1)
 
-![image](https://github.com/user-attachments/assets/4975d77d-2425-440a-8465-c67b11ca2175)
+<img width="510" height="888" alt="image" src="https://github.com/user-attachments/assets/fbd0a813-684d-402d-b343-5fa277798fc3" />
 
-df.fillna(method = 'bfill')
 
-![image](https://github.com/user-attachments/assets/9485c4d3-ef99-426d-8fdb-01fb0bc55cef)
+df.fillna("empty")
 
-df_dropped = df.dropna()
+<img width="1170" height="918" alt="image" src="https://github.com/user-attachments/assets/fe4af4b0-9778-4e4e-995f-161d2547f9e0" />
 
-df_dropped
 
-![image](https://github.com/user-attachments/assets/d096a5f2-89cb-4c10-98bc-480d68150ebc)
+df.fillna(method='ffill')
 
-df.fillna({'GENDER':'MALE','NAME':'HARSHITH M','ADDRESS':'RAJAMUNDRY','M1':98,'M2':87,'M3':76,'M4':92,'TOTAL':305,'AVG':89.999999})
+<img width="1457" height="877" alt="image" src="https://github.com/user-attachments/assets/f4a3f3eb-d28e-49c7-bb2d-322ddcdf4fc7" />
 
-![image](https://github.com/user-attachments/assets/5683420d-8ef4-49bd-ae7d-055e5946a726)
+df.fillna(method='bfill')
 
-ir=pd.read_csv('/content/iris (1).csv')
+<img width="1427" height="871" alt="image" src="https://github.com/user-attachments/assets/cacb6d2d-6d4a-41e4-b839-c585d35c5476" />
+
+
+df.fillna({'NAME':'Harshith M','GENDER':'MALE','ADDRESS':'CHITHUR','M1':90,'M2':90,'M3':89,'M4':87})
+
+<img width="1105" height="893" alt="image" src="https://github.com/user-attachments/assets/1f3a4d5e-f680-4afa-a0d6-7fc94d5f813c" />
+
+ir=pd.read_csv("iris.csv")
 ir
 
-![image](https://github.com/user-attachments/assets/cecef106-4291-4497-803a-33fdac38add7)
+<img width="823" height="518" alt="image" src="https://github.com/user-attachments/assets/23d6780f-0bf2-4ec9-8509-884023e123c8" />
+
 
 ir.describe()
 
-![image](https://github.com/user-attachments/assets/4a65cb4d-a1b7-4f4f-94aa-c8d5098d6cc3)
+<img width="751" height="381" alt="image" src="https://github.com/user-attachments/assets/d7a7a916-9d0e-4fec-9e14-30518370c2a5" />
 
 import seaborn as sns
-
 sns.boxplot(x='sepal_width',data=ir)
 
-![image](https://github.com/user-attachments/assets/4c355ce0-db5f-4965-8d4d-74b14187aff1)
+<img width="787" height="593" alt="image" src="https://github.com/user-attachments/assets/f6720148-2e72-4817-9071-8ae5d9b3e73b" />
 
-c1=ir.sepal_width.quantile(0.25)
 
-c3=ir.sepal_width.quantile(0.75)
+q1=ir.sepal_width.quantile(0.25)
+q3=ir.sepal_width.quantile(0.75)
+iqr=q3-q1
+print(iqr)
 
-iq=c3-c1
+<img width="630" height="50" alt="image" src="https://github.com/user-attachments/assets/541d38a8-ff79-4fef-b8df-7d3c66451c33" />
 
-print(c3)
-
-![image](https://github.com/user-attachments/assets/cb80d3f8-3267-4748-8743-00a30060f0fe)
-
-rid=ir[((ir.sepal_width<(c1-1.5*iq))|(ir.sepal_width>(c3+1.5*iq)))]
-
+rid=ir[((ir.sepal_width<(q1-1.5*iqr))|(ir.sepal_width>(q3+1.5*iqr)))]
 rid['sepal_width']
 
-![image](https://github.com/user-attachments/assets/5a991ac8-fb5b-42c0-b720-08a5d360093c)
+<img width="1357" height="270" alt="image" src="https://github.com/user-attachments/assets/14355313-96b4-44af-896b-eac90127a689" />
 
-delid=ir[~((ir.sepal_width<(c1-1.5*iq))|(ir.sepal_width>(c3+1.5*iq)))]
 
+delid=ir[~((ir.sepal_width<(q1-1.5*iqr))|(ir.sepal_width>(q3+1.5*iqr)))]
 delid
 
-![image](https://github.com/user-attachments/assets/f49fdfbc-b4e5-4458-ae65-7a11b3beff12)
+<img width="1128" height="536" alt="image" src="https://github.com/user-attachments/assets/44b3aedf-ca57-4b2f-a67a-f3839b4e611c" />
 
 sns.boxplot(x='sepal_width',data=delid)
 
-![image](https://github.com/user-attachments/assets/5f37fac6-bbc4-40ad-98fd-300f1ae27731)
+<img width="791" height="598" alt="image" src="https://github.com/user-attachments/assets/22747e2b-0120-44c4-98bf-baf9be2d47ca" />
 
-import matplotlib.pyplot as plt
-import pandas as pd
+
 import numpy as np
-import scipy.stats as stats
-dataset=pd.read_csv("/content/heights.csv")
-dataset
-
-![image](https://github.com/user-attachments/assets/9faf1aad-93bf-421d-9e98-65b50a62837c)
-
-df = pd.read_csv("heights.csv")
-q1 = df['height'].quantile(0.25)
-q2 = df['height'].quantile(0.5)
-q3 = df['height'].quantile(0.75)
-iqr = q3-q1
-iqr
-
-![image](https://github.com/user-attachments/assets/0956caf0-38e7-4958-8eff-8e96e08314ee)
-
-low = q1 - 1.5*iqr
-low
-
-![image](https://github.com/user-attachments/assets/98e89809-574b-45ed-81de-ee1725227dee)
-
-high = q3 + 1.5*iqr
-high
-
-![image](https://github.com/user-attachments/assets/c7e79f12-432d-4e52-bb23-20beed0fe4e7)
-
-df1 = df[((df['height'] >=low)& (df['height'] <=high))]
-df1
-
-![image](https://github.com/user-attachments/assets/c4e3f839-3e41-4720-83ba-fc0c8e47c7e8)
-
-z = np.abs(stats.zscore(df['height']))
+from scipy import stats
+z = np.abs(stats.zscore(ir['sepal_width']))
 z
 
-![image](https://github.com/user-attachments/assets/fd4ae98b-2bbe-44b4-9ed8-2478c19bdffa)
-
-df1 = df[z<3]
-df1
-
-![image](https://github.com/user-attachments/assets/75123137-9c54-44ec-ba93-00e2a676d3a6)
+<img width="1266" height="682" alt="image" src="https://github.com/user-attachments/assets/0be7a3c2-912b-4e56-8481-798a7ba31d36" />
 
 
+ir1=ir[z<3]
+ir1
+
+
+<img width="1223" height="528" alt="image" src="https://github.com/user-attachments/assets/1223c27b-ce7f-4175-9900-a56977e23947" />
 
 
 
